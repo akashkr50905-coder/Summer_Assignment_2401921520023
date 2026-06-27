@@ -14,7 +14,6 @@ struct node{
     }
 };
 
-// SERIALIZE
 void serializeHelper(node* root, string& s){
     if(root == NULL){
         s += "N,";   // N for null
@@ -24,7 +23,6 @@ void serializeHelper(node* root, string& s){
     serializeHelper(root->left,  s);
     serializeHelper(root->right, s);
 }
-
 string serialize(node* root){
     string s = "";
     serializeHelper(root, s);
@@ -41,7 +39,6 @@ node* deserializeHelper(vector<string>& tokens, int& idx){
     root->right = deserializeHelper(tokens, idx);
     return root;
 }
-
 vector<string> split(string& s){
     vector<string> tokens;
     string token = "";
@@ -56,20 +53,17 @@ vector<string> split(string& s){
     }
     return tokens;
 }
-
 node* deserialize(string s){
     vector<string> tokens = split(s);
     int idx = 0;
     return deserializeHelper(tokens, idx);
 }
-
 void preorder(node* root){
     if(root == NULL) return;
     cout << root->val << " ";
     preorder(root->left);
     preorder(root->right);
 }
-
 int main(){
     // build tree [1,2,3,null,null,4,5]
     node* root         = new node(1);
